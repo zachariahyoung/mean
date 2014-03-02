@@ -1,24 +1,17 @@
-/**
- * Created by Zach on 2/5/14.
- */
-
 var express = require('express');
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var app = express();
 
-app.configure(function(){
-    app.set('views', __dirname + '/server/views');
-    app.set('view engine', 'jade');
-});
+var config = require('./server/config/config')[env];
 
-app.get('*', function(req, res){
-   res.render('index');
-});
+require('./server/config/express')(app, config);
 
-var port = 3030;
+require('./server/config/mongoose')(config);
 
-app.listen(port);
+require('./server/config/routes')(app);
 
-console.log('Listening on port ' + port + ' ...');
+
+app.listen(config.port);
+console.log('Listening on port ' + config.port + ' ...')
