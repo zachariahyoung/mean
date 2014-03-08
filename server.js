@@ -26,6 +26,11 @@ passport.use(new LocalStrategy(
     }
 ));
 
+app.use(function (req, res, next) {
+    console.log(req.data);
+    next();
+});
+
 passport.serializeUser(function (user, done) {
     if (user) {
         done(null, user._id);
@@ -41,7 +46,6 @@ passport.deserializeUser(function (id, done) {
         }
     })
 });
-
 
 require('./server/config/routes')(app);
 
