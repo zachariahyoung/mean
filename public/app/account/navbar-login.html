@@ -5,5 +5,12 @@
         </div>
         <button ng-click="signin(username,password)" class="btn btn-primary">Sign in</button>
     </form>
-    <ul class="nav navbar navbar-right"></ul>
+    <ul ng-show="identity.isAuthenticated()" class="nav navbar-nav navbar-right">
+        <li class="dropdown"><a href="" data-toggle="dropdown" class="dropdown-toggle">{{identity.currentUser.firtName +
+            " " + identity.currentUser.lastName}}<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="" ng-click="signout()">Sign Out</a></li>
+            </ul>
+        </li>
+    </ul>
 </div>

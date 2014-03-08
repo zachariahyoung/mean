@@ -1,18 +1,19 @@
 {
-  "name": "mean",
-  "version": "0.0.0",
-  "homepage": "https://github.com/zachariahyoung/mean",
-  "authors": [
-    "Zachariah Young <zpyoung@gmail.com>"
-  ],
-  "description": "First Mean App",
-  "license": "MIT",
-  "private": true,
-  "dependencies": {
-    "jquery": "~2.1.0",
-    "toastr": "~2.0.1",
-    "angular": "~1.2.11",
-    "angular-resource": "~1.2.11",
-    "angular-route": "~1.2.11"
-  }
+    "name": "mean",
+    "version": "0.0.0",
+    "homepage": "https://github.com/zachariahyoung/mean",
+    "authors": [
+        "Zachariah Young <zpyoung@gmail.com>"
+    ],
+    "description": "First Mean App",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "jquery": "~2.1.0",
+        "toastr": "~2.0.1",
+        "angular": "~1.2.11",
+        "angular-resource": "~1.2.11",
+        "angular-route": "~1.2.11",
+        "bootstrap": "~3.1.1"
+    }
 }
