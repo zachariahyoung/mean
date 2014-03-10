@@ -16,13 +16,12 @@ module.exports = function (app, config) {
         app.use(express.session({secret: 'multi vision unicorns'}));
         app.use(passport.initialize());
         app.use(passport.session());
-
         app.use(stylus.middleware(
             {
                 src: config.rootPath + '/public',
-                complie: compile
+                compile: compile
             }
         ));
-        app.use(express.static(config.rootPath + '/public'))
+        app.use(express.static(config.rootPath + '/public'));
     });
 }

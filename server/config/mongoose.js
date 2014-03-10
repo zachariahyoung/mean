@@ -6,7 +6,7 @@ module.exports = function (config) {
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error...'));
     db.once('open', function callback() {
-        console.log('multivision db open')
+        console.log('multivision db opened');
     });
 
     var userSchema = mongoose.Schema({
@@ -14,14 +14,14 @@ module.exports = function (config) {
         lastName: String,
         username: String,
         salt: String,
-        hash_pwd: String
+        hashed_pwd: String,
+        roles: [String]
     });
-
     userSchema.methods = {
-        authenticate: function (password) {
-            return hashPwd(this.salt, password) === this.hash_pwd;
+        authenticate: function (passwordToMatch) {
+            return hashPwd(this.salt, passwordToMatch) === this.hashed_pwd;
         }
-    }
+    };
     var User = mongoose.model('User', userSchema);
 
     User.find({}).exec(function (err, collection) {
@@ -29,13 +29,13 @@ module.exports = function (config) {
             var salt, hash;
             salt = createSalt();
             hash = hashPwd(salt, 'joe');
-            User.create({firstName: 'Joe', lastName: 'Eames', username: 'joe', salt: salt, hash_pwd: hash});
+            User.create({firstName: 'Joe', lastName: 'Eames', username: 'joe', salt: salt, hashed_pwd: hash, roles: ['admin']});
             salt = createSalt();
             hash = hashPwd(salt, 'john');
-            User.create({firstName: 'John', lastName: 'Papa', username: 'john', salt: salt, hash_pwd: hash});
+            User.create({firstName: 'John', lastName: 'Papa', username: 'john', salt: salt, hashed_pwd: hash, roles: []});
             salt = createSalt();
             hash = hashPwd(salt, 'dan');
-            User.create({firstName: 'Dan', lastName: 'Wahlin', username: 'dan', salt: salt, hash_pwd: hash});
+            User.create({firstName: 'Dan', lastName: 'Wahlin', username: 'dan', salt: salt, hashed_pwd: hash});
         }
     })
 }
